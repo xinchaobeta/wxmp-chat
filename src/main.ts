@@ -31,7 +31,7 @@ async function main() {
       try {
         console.log(`Message: ${content}`);
         const gptAnswer = await apiGetAnswer({ userId, content });
-
+        console.log('Answer: ', gptAnswer);
         // todo: 分段文字回复
         return renderOutTextMsg(message, gptAnswer);
       } catch (e) {
@@ -39,7 +39,6 @@ async function main() {
         return renderOutTextMsg(message, (e as Error)?.message ?? 'server error');
       }
     })
-
   try {
     await app.start();
   } catch (e) {
