@@ -14,7 +14,12 @@ export const apiGetAnswer = async (props: ApiGetAnswerProps) => {
   const { data } = await request.post<string>('/message', content, {
     params: {
       userId
-    }
+    },
+    headers: {
+      'Content-Length': 0,
+      'Content-Type': 'text/plain'
+    },
+    responseType: 'text'
   })
   return data;
 }
