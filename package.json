@@ -1,21 +1,43 @@
 {
-  "name": "wxcloudrun-express",
+  "name": "wechat-chatgpt",
   "version": "1.0.0",
-  "description": "微信云托管 express 框架模版",
-  "main": "index.js",
+  "description": "",
+  "main": "dist/main.js",
+  "export": "dist/main.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node --loader ts-node/esm src/main.ts",
+    "build": "tsc"
   },
   "author": "",
-  "license": "Apache-2.0",
+  "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.16.4",
     "morgan": "^1.10.0",
     "mysql2": "^2.3.2",
-    "sequelize": "^6.8.0"
+    "sequelize": "^6.8.0",
+    "async-retry": "^1.3.3",
+    "chatgpt": "^4.4.0",
+    "dotenv": "^16.0.3",
+    "execa": "^6.1.0",
+    "express": "^4.18.2",
+    "qrcode": "^1.5.1",
+    "tnwx": "^2.5.6",
+    "uuid": "^9.0.0",
+    "yaml": "^2.1.3"
   },
-  "engines": {
-    "node": ">=12.0.0"
-  }
+  "devDependencies": {
+    "@types/async-retry": "^1.4.5",
+    "@types/express": "^4.17.17",
+    "@types/qrcode": "^1.5.0",
+    "@types/uuid": "^9.0.0",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1"
+  },
+  "nodemonConfig": {
+    "watch": "src",
+    "ext": "ts",
+    "exec": "node --loader ts-node/esm src/main.ts",
+    "delay": 500
+  },
+  "type": "module"
 }
