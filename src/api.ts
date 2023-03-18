@@ -11,15 +11,10 @@ export interface ApiGetAnswerProps {
 }
 export const apiGetAnswer = async (props: ApiGetAnswerProps) => {
   const { userId, content } = props;
-  const { data } = await request.post<string>('/message', content, {
+  const { data } = await request.post<string>('/message', { content }, {
     params: {
       userId
     },
-    headers: {
-      'Content-Length': 0,
-      'Content-Type': 'text/plain'
-    },
-    responseType: 'text'
   })
   return data;
 }
