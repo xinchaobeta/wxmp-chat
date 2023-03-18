@@ -1,5 +1,5 @@
 {
-  "name": "wechat-chatgpt",
+  "name": "wxmp-chat",
   "version": "1.0.0",
   "description": "",
   "main": "dist/main.js",
@@ -33,12 +33,6 @@
     "@types/uuid": "^9.0.0",
     "nodemon": "^2.0.20",
     "ts-node": "^10.9.1"
-  },
-  "nodemonConfig": {
-    "watch": "src",
-    "ext": "ts",
-    "exec": "node --loader ts-node/esm src/main.ts",
-    "delay": 500
   },
   "type": "module"
 }
