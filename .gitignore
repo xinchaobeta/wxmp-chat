@@ -320,3 +320,7 @@ config.json
 cache.json
 config.yaml
 .vscode
+
+
+# ignore lockfile
+package-lock.json
