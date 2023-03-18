@@ -1,5 +1,18 @@
+import { apiGetAnswer } from "./api.js";
 import { WechatApp } from "./wechatapp.js";
 import { renderOutTextMsg } from "./wechatDefaultController.js";
+
+const SINGLE_MESSAGE_MAX_SIZE = 500;
+const segmentMessage = (mesasge: string): string[] => {
+  const messages: Array<string> = [];
+  let message = mesasge;
+  while (message.length > SINGLE_MESSAGE_MAX_SIZE) {
+    messages.push(message.slice(0, SINGLE_MESSAGE_MAX_SIZE));
+    message = message.slice(SINGLE_MESSAGE_MAX_SIZE);
+  }
+  messages.push(message);
+  return messages;
+}
 
 async function main() {
   const app = new WechatApp({
@@ -17,10 +30,10 @@ async function main() {
       }
       try {
         console.log(`Message: ${content}`);
-        // const gptAnswer = await chatGPTBot.handleMesaage(content, userId);
-        const gptAnswer = ['']
+        const gptAnswer = await apiGetAnswer({ userId, content });
+
         // todo: 分段文字回复
-        return renderOutTextMsg(message, gptAnswer?.join(''));
+        return renderOutTextMsg(message, gptAnswer);
       } catch (e) {
         console.error(e);
         return renderOutTextMsg(message, (e as Error)?.message ?? 'server error');
