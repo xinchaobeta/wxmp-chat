@@ -20,7 +20,7 @@ interface WxMessagePostRequest extends Request {
 }
 type TnwxEvent<N=keyof MsgAdapter> = N extends `process${infer E}` ? Uncapitalize<E> : never;
 type TnwxProcess<N extends TnwxEvent> = MsgAdapter[`process${Capitalize<N>}`];
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 80;
 
 const handleMessageGet = (req: WxMessageGetRequest, res: Response) => {
   const { signature, timestamp, nonce, echostr } = req.query;
