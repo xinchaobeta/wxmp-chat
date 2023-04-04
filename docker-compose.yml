@@ -1,0 +1,16 @@
+version: "3"
+services:
+  wxmp_chat:
+    image: xinchaobeta/wxmp-chat
+    container_name: wxmp_chat
+    command: pnpm start
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_POLL_INTERVAL=60
+    command: wxmp_chat
